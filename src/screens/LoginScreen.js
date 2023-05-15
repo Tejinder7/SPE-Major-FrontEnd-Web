@@ -2,6 +2,7 @@ import Card from "../components/UI/Card";
 import classes from "./Login.module.css";
 
 import Button from "../components/UI/Button";
+import LoginForm from "../components/Forms/LoginForm";
 
 const LoginScreen = () => {
   return (
@@ -11,14 +12,15 @@ const LoginScreen = () => {
           <section className={classes.title}>
             <h2>Login</h2>
           </section>
-          <div className={classes.control}>
+          <LoginForm />
+          {/* <div className={classes.control}>
             <label htmlFor="email">Email</label>
             <input type="text" id="email" />
           </div>
           <div className={classes.control}>
             <label htmlFor="password">Password</label>
             <input type="password" id="password" />
-          </div>
+          </div> */}
           {/* <div className={classes.control}>
             <label htmlFor="category">Category</label>
             <input type="text" id="category" />

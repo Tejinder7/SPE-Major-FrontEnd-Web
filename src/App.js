@@ -1,5 +1,5 @@
 import React from "react";
-import Cart from "./components/Cart/Cart";
+import AddDishOverlay from "./components/Overlay/AddDishOverlay";
 import Header from "./components/Layout/Header";
 import Meals from "./components/Meals/Meals";
 import LoginScreen from "./screens/LoginScreen";
@@ -7,7 +7,7 @@ import LoginScreen from "./screens/LoginScreen";
 function App() {
   return (
     <React.Fragment>
-      {/* <Cart /> */}
+      {/* <AddDishOverlay /> */}
       <Header />
       <main>
         {/* <Meals /> */}
