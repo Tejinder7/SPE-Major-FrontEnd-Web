@@ -16,7 +16,8 @@
 }
 
 .actions {
-  text-align: right;
+  text-align: center;
+  margin-top: 1rem;
 }
 
 /* .actions button {

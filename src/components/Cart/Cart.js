@@ -1,11 +1,12 @@
 import Button from "../UI/Button";
 import Modal from "../UI/Modal";
 import classes from "./Cart.module.css";
+import Checkout from "./Checkout";
 
 const Cart = (props) => {
   return (
     <Modal>
-      Form
+      <Checkout />
       <div></div>
       <div className={classes.actions}>
         {/* <button className={classes["button--alt"]}>Cancel</button> */}
