@@ -2,14 +2,16 @@ import React from "react";
 import Cart from "./components/Cart/Cart";
 import Header from "./components/Layout/Header";
 import Meals from "./components/Meals/Meals";
+import LoginScreen from "./screens/LoginScreen";
 
 function App() {
   return (
     <React.Fragment>
-      <Cart />
+      {/* <Cart /> */}
       <Header />
       <main>
-        <Meals />
+        {/* <Meals /> */}
+        <LoginScreen />
       </main>
     </React.Fragment>
   );

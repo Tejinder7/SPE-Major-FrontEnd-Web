@@ -38,10 +38,16 @@
   height: 2.2rem;
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  margin: 0;
+.login {
+  position: relative;
+  max-width: 40rem;
+  width: 90%;
+  margin: 2rem auto;
+  margin-top: -6rem;
+  animation: meals-appear 1s ease-out forwards;
+}
+
+.actions {
+    margin-top: 2rem;
+  text-align: center;
 }
