@@ -3,37 +3,36 @@ import classes from "./Login.module.css";
 
 import Button from "../components/UI/Button";
 import LoginForm from "../components/Forms/LoginForm";
+import { useContext, useState } from "react";
+import { AuthContext } from "../store/auth-context";
 
 const LoginScreen = () => {
+  const [isAuthenticating, setIsAuthenticating] = useState(false);
+
+  const authCtx = useContext(AuthContext);
+
+  async function loginHandler({ email, password }) {
+    setIsAuthenticating(true);
+    try {
+      // const token = await login(email, password);
+      // authCtx.authenticate(token);
+    } catch (error) {
+      // Alert.alert(
+      //   "Authentication failed!",
+      //   "Could not log you in, please check your credentials or try again later"
+      // );
+      setIsAuthenticating(false);
+    }
+  }
+
+  if (isAuthenticating) {
+    return <h2>Logging you in</h2>;
+  }
+
   return (
     <section className={classes.login}>
       <Card>
-        <form>
-          <section className={classes.title}>
-            <h2>Login</h2>
-          </section>
-          <LoginForm />
-          {/* <div className={classes.control}>
-            <label htmlFor="email">Email</label>
-            <input type="text" id="email" />
-          </div>
-          <div className={classes.control}>
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" />
-          </div> */}
-          {/* <div className={classes.control}>
-            <label htmlFor="category">Category</label>
-            <input type="text" id="category" />
-          </div> */}
-          {/* <div className={classes.control}>
-      <label htmlFor="city">City</label>
-      <input type="text" id="city" />
-    </div> */}
-          <div className={classes.actions}>
-            {/* <button className={classes.button}>View Orders</button> */}
-            <Button message="Login" />{" "}
-          </div>
-        </form>
+        <LoginForm />
       </Card>
     </section>
   );
