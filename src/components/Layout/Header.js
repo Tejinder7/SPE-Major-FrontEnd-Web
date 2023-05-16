@@ -18,7 +18,11 @@ const Header = (props) => {
   }
 
   if (props.role === "ROLE_RESTAURANT") {
-    headerContent = <RestaurantHeaderButtons onActivate={props.onActivate} />;
+    headerContent = (
+      <RestaurantHeaderButtons
+        onActivate={props.onActivate}
+      />
+    );
   }
 
   return (

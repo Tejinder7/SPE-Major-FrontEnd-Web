@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { AuthContext } from "../store/auth-context";
 import GlobalService from "../util/GlobalService";
 
 const fetchFoodCourts = async (props) => {
@@ -22,5 +20,32 @@ const fetchFoodCourts = async (props) => {
   return response.data;
 };
 
-const SuperAdminController = { fetchFoodCourts };
+const addNewFoodCourt = async (username, password, name, address) => {
+  const childURL = `superAdmin/addFoodCourt`;
+  const token = localStorage.getItem("token");
+
+  const postData = {
+    username: username,
+    password: password,
+    name: name,
+    address: address,
+  };
+
+  const header = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  const response = await GlobalService.hitPostService({
+    childURL: childURL,
+    postData: postData,
+    header: header,
+  });
+
+  console.log("Is the response correct");
+  console.log(response);
+
+  return response.data;
+};
+
+const SuperAdminController = { fetchFoodCourts, addNewFoodCourt };
 export default SuperAdminController;

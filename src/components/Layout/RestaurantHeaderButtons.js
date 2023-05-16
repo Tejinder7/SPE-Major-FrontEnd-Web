@@ -3,7 +3,7 @@ import { AuthContext } from "../../store/auth-context";
 import Button from "../UI/Button";
 import classes from "./HeaderButtons.module.css";
 
-const RestaurantHeaderButtons = props => {
+const RestaurantHeaderButtons = (props) => {
   const authCtx = useContext(AuthContext);
 
   const logoutHandler = () => {
@@ -12,9 +12,13 @@ const RestaurantHeaderButtons = props => {
 
   return (
     <div className={classes.actions}>
-      <Button message="Add Dish" type="button" onPress={props.onActivate}/>
-      <Button message="View Orders" />
-      <Button message="Logout" type="button" onPress={logoutHandler} />
+      <Button
+        message="Add Dish"
+        buttonType="button"
+        onPress={props.onActivate}
+      />
+      <Button message="View Orders"/>
+      <Button message="Logout" buttonType="button" onPress={logoutHandler} />
     </div>
   );
 };

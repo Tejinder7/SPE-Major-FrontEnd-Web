@@ -6,9 +6,11 @@ import AppSummary from "../components/Meals/AppSummary";
 import SuperAdminController from "../controllers/SuperAdminController";
 import FoodCourtItem from "../components/Meals/ListItems/FoodCourtItem";
 import Header from "../components/Layout/Header";
+import AddFoodCourtOverlay from "../components/Overlay/AddFoodCourtOverlay";
 
 const SuperAdminScreen = () => {
   const [foodCourts, setFoodCourts] = useState([]);
+  const [showFoodCourtOverlay, setFoodCourtOverlay] = useState(false);
 
   useEffect(() => {
     async function getFoodCourts() {
@@ -21,7 +23,40 @@ const SuperAdminScreen = () => {
       }
     }
     getFoodCourts();
-  }, []);
+  }, [showFoodCourtOverlay]);
+
+  const showFoodCourtOverlayHandler = () => {
+    setFoodCourtOverlay(true);
+  };
+
+  const removeFoodCourtOverlayHandler = () => {
+    setFoodCourtOverlay(false);
+  };
+
+  const newFoodCourtAdditionHandler = async (
+    username,
+    password,
+    name,
+    address
+  ) => {
+    try {
+      const response = await SuperAdminController.addNewFoodCourt(
+        username,
+        password,
+        name,
+        address
+      );
+      console.log(response);
+    } catch (error) {
+      alert(error.response.message);
+    }
+
+    setFoodCourtOverlay(false);
+    // console.log("data check kro ");
+    // console.log(name);
+    // console.log(price);
+    // console.log(category);
+  };
 
   const foodCourtList = foodCourts.map((foodCourt) => (
     <FoodCourtItem
@@ -33,7 +68,16 @@ const SuperAdminScreen = () => {
 
   return (
     <Fragment>
-      <Header role="ROLE_SUPER_ADMIN" />
+      <Header
+        role="ROLE_SUPER_ADMIN"
+        onActivate={showFoodCourtOverlayHandler}
+      />
+      {showFoodCourtOverlay && (
+        <AddFoodCourtOverlay
+          onCancel={removeFoodCourtOverlayHandler}
+          onAddingNewFoodCourt={newFoodCourtAdditionHandler}
+        />
+      )}
       <AppSummary />
       <section className={classes.meals}>
         <Card>

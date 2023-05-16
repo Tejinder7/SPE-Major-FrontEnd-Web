@@ -8,7 +8,7 @@ import RestaurantController from "../controllers/RestaurantController";
 
 import classes from "./SuperAdminScreen.module.css";
 
-const RestaurantScreen = () => {
+const RestaurantScreen = (props) => {
   const [dishes, setDishes] = useState([]);
   const [showDishOverlay, setDishOverlay] = useState(false);
 
@@ -63,7 +63,11 @@ const RestaurantScreen = () => {
 
   return (
     <Fragment>
-      <Header role="ROLE_RESTAURANT" onActivate={showDishOverlayHandler} />
+      <Header
+        role="ROLE_RESTAURANT"
+        onActivate={showDishOverlayHandler}
+        onSwitch={props.onSwitch}
+      />
       {showDishOverlay && (
         <AddDishOverlay
           onCancel={removeDishOverlayHandler}

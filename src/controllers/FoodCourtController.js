@@ -23,5 +23,33 @@ const fetchRestaurants = async (props) => {
   return response.data;
 };
 
-const FoodCourtController = { fetchRestaurants };
+const addNewRestaurant = async (username, password, name, contact) => {
+  const foodCourtId = localStorage.getItem("userId");
+  const childURL = `foodCourt/${foodCourtId}/addRestaurant`;
+  const token = localStorage.getItem("token");
+
+  const postData = {
+    username: username,
+    password: password,
+    name: name,
+    contact: contact,
+  };
+
+  const header = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  const response = await GlobalService.hitPostService({
+    childURL: childURL,
+    postData: postData,
+    header: header,
+  });
+
+  console.log("Is the response correct");
+  console.log(response);
+
+  return response.data;
+};
+
+const FoodCourtController = { fetchRestaurants, addNewRestaurant };
 export default FoodCourtController;

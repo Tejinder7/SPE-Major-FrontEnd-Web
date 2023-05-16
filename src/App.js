@@ -9,7 +9,6 @@ import FoodCourtScreen from "./screens/FoodCourtScreen";
 import RestaurantScreen from "./screens/RestaurantScreen";
 
 function AuthStack() {
-
   return (
     <Fragment>
       <LoginScreen />
