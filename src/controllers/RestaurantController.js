@@ -95,5 +95,28 @@ const deleteDish = async (dishId) => {
     return response.data;
   };
 
-const RestaurantController = { fetchDishes, addNewDish, fetchOrders, deleteDish };
+  const placeOrder = async (orderId) => {
+    const childURL = `restaurant/completeOrder/${orderId}`;
+    const token = localStorage.getItem("token");
+  
+    console.log("Sending token");
+    console.log(token);
+  
+    const header = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+  
+    const response = await GlobalService.hitPutService({
+      childURL: childURL,
+      postData: {},
+      header: header,
+    });
+  
+    console.log("Is the response correct");
+    console.log(response);
+  
+    return response.data;
+  };
+
+const RestaurantController = { fetchDishes, addNewDish, fetchOrders, deleteDish, placeOrder };
 export default RestaurantController;

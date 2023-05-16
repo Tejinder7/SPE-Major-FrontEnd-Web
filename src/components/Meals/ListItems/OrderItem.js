@@ -3,6 +3,9 @@ import Button from "../../UI/Button";
 import classes from "./ListItem.module.css";
 
 const OrderItem = (props) => {
+  const placeOrderHandler = () => {
+    props.onPlace(props.id);
+  };
   const price = `₹${props.price.toFixed(2)}`;
 
   return (
@@ -15,7 +18,11 @@ const OrderItem = (props) => {
           <div className={classes.price}>Table: {props.tableNumber}</div>
         </div>
         <div className={classes.actions}>
-          <Button message="Complete Order" buttonType="button" />
+          <Button
+            message="Complete Order"
+            buttonType="button"
+            onPress={placeOrderHandler}
+          />
         </div>
       </li>
     </Fragment>

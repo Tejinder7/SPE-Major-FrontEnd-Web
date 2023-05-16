@@ -38,7 +38,7 @@ const hitPutService = async (props) => {
 
   const header = props.header;
 
-  const response = await axios.post(url, props.postData, header);
+  const response = await axios.put(url, props.postData, header);
   console.log(response);
 
   return response;

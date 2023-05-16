@@ -49,6 +49,15 @@ const RestaurantScreen = (props) => {
       }
   }
 
+  const placeOrderHandler = async (orderId) => {
+    try {
+        const response = await RestaurantController.placeOrder(orderId);
+        console.log(response);
+      } catch (error) {
+        alert(error.response.message);
+      }
+  }
+
   const dishList = dishes.map((dish) => (
     <DishItem
       id={dish.dishId}
@@ -65,6 +74,7 @@ const RestaurantScreen = (props) => {
       dishes={order.dishList}
       price={order.totalPrice}
       tableNumber={order.tableNumber}
+      onPlace={placeOrderHandler}
     />
   ));
 
