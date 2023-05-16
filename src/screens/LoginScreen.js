@@ -2,9 +2,10 @@ import Card from "../components/UI/Card";
 import classes from "./Login.module.css";
 
 import LoginForm from "../components/Forms/LoginForm";
-import { useContext, useState } from "react";
+import { Fragment, useContext, useState } from "react";
 import { AuthContext } from "../store/auth-context";
 import LoginController from "../controllers/LoginController";
+import Header from "../components/Layout/Header";
 
 const LoginScreen = () => {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
@@ -34,11 +35,14 @@ const LoginScreen = () => {
   }
 
   return (
-    <section className={classes.login}>
-      <Card>
-        <LoginForm onAuthenticate={loginHandler} />
-      </Card>
-    </section>
+    <Fragment>
+      <Header />
+      <section className={classes.login}>
+        <Card>
+          <LoginForm onAuthenticate={loginHandler} />
+        </Card>
+      </section>
+    </Fragment>
   );
 };
 

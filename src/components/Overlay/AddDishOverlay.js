@@ -15,7 +15,12 @@ const AddDishOverlay = (props) => {
       </form>
       <div className={classes.actions}>
         <Button message="Add" />
-        <Button alt={true} message="Cancel" />
+        <Button
+          alt={true}
+          message="Cancel"
+          type="button"
+          onPress={props.onCancel}
+        />
       </div>
     </Modal>
   );

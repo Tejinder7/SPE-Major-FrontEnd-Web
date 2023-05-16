@@ -5,6 +5,7 @@ import { Fragment, useEffect, useState } from "react";
 import AppSummary from "../components/Meals/AppSummary";
 import SuperAdminController from "../controllers/SuperAdminController";
 import FoodCourtItem from "../components/Meals/ListItems/FoodCourtItem";
+import Header from "../components/Layout/Header";
 
 const SuperAdminScreen = () => {
   const [foodCourts, setFoodCourts] = useState([]);
@@ -32,6 +33,7 @@ const SuperAdminScreen = () => {
 
   return (
     <Fragment>
+      <Header role="ROLE_SUPER_ADMIN" />
       <AppSummary />
       <section className={classes.meals}>
         <Card>

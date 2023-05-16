@@ -10,15 +10,15 @@ const Header = (props) => {
   let headerContent = <></>;
 
   if (props.role === "ROLE_SUPER_ADMIN") {
-    headerContent = <SuperAdminHeaderButtons />;
+    headerContent = <SuperAdminHeaderButtons onActivate={props.onActivate} />;
   }
 
   if (props.role === "ROLE_FOOD_COURT") {
-    headerContent = <FoodCourtHeaderButtons />;
+    headerContent = <FoodCourtHeaderButtons onActivate={props.onActivate} />;
   }
 
   if (props.role === "ROLE_RESTAURANT") {
-    headerContent = <RestaurantHeaderButtons />;
+    headerContent = <RestaurantHeaderButtons onActivate={props.onActivate} />;
   }
 
   return (

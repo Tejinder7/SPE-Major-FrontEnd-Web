@@ -9,11 +9,9 @@ import FoodCourtScreen from "./screens/FoodCourtScreen";
 import RestaurantScreen from "./screens/RestaurantScreen";
 
 function AuthStack() {
-  const authCtx = useContext(AuthContext);
 
   return (
     <Fragment>
-      <Header role={authCtx.role} />
       <LoginScreen />
     </Fragment>
   );
@@ -34,7 +32,6 @@ function AuthenticatedStack() {
 
   return (
     <Fragment>
-      <Header role={authCtx.role} />
       {/* <AddDishOverlay /> */}
       {/* <Meals /> */}
       {screen}
