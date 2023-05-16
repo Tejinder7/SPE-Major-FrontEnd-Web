@@ -58,11 +58,21 @@ const SuperAdminScreen = () => {
     // console.log(category);
   };
 
+  const deleteFoodCourtHandler = async (foodCourtId) => {
+    try {
+      const response = await SuperAdminController.deleteFoodCourt(foodCourtId);
+      console.log(response);
+    } catch (error) {
+      alert(error.response.message);
+    }
+  };
+
   const foodCourtList = foodCourts.map((foodCourt) => (
     <FoodCourtItem
-      key={foodCourt.authId}
+      id={foodCourt.authId}
       name={foodCourt.name}
       description={foodCourt.address}
+      onDelete={deleteFoodCourtHandler}
     />
   ));
 
