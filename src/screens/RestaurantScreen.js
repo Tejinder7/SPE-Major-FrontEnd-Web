@@ -23,11 +23,11 @@ const RestaurantScreen = () => {
       }
     }
     getDishes();
-  }, []);
+  }, [showDishOverlay]);
 
   const dishList = dishes.map((dish) => (
     <DishItem
-      key={dish.id}
+      key={dish.dishId}
       name={dish.name}
       price={dish.price}
       category={dish.category}
@@ -42,13 +42,34 @@ const RestaurantScreen = () => {
     setDishOverlay(false);
   };
 
+  const newDishAdditionHandler = async (name, price, category) => {
+    try {
+      const response = await RestaurantController.addNewDish(
+        name,
+        price,
+        category
+      );
+      console.log(response);
+    } catch (error) {
+      alert(error.response.message);
+    }
+
+    setDishOverlay(false);
+    // console.log("data check kro ");
+    // console.log(name);
+    // console.log(price);
+    // console.log(category);
+  };
+
   return (
     <Fragment>
-      <Header
-        role="ROLE_RESTAURANT"
-        onActivate={showDishOverlayHandler}
-      />
-      {showDishOverlay && <AddDishOverlay onCancel={removeDishOverlayHandler}/>}
+      <Header role="ROLE_RESTAURANT" onActivate={showDishOverlayHandler} />
+      {showDishOverlay && (
+        <AddDishOverlay
+          onCancel={removeDishOverlayHandler}
+          onAddingNewDish={newDishAdditionHandler}
+        />
+      )}
       <AppSummary />
       <section className={classes.meals}>
         <Card>

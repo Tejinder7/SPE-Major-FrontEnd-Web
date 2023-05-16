@@ -1,27 +1,17 @@
 import AddDishForm from "../Forms/AddDishForm";
-import Button from "../UI/Button";
 import Modal from "../UI/Modal";
 
-import classes from "./AddDishOverlay.module.css";
-
 const AddDishOverlay = (props) => {
+  const dishAdditionHandler = ({ name, price, category }) => {
+    props.onAddingNewDish(name, price, category);
+  };
+
   return (
     <Modal>
-      <form>
-        <section className={classes.title}>
-          <h2>Add New Dish</h2>
-        </section>
-        <AddDishForm />
-      </form>
-      <div className={classes.actions}>
-        <Button message="Add" />
-        <Button
-          alt={true}
-          message="Cancel"
-          type="button"
-          onPress={props.onCancel}
-        />
-      </div>
+      <AddDishForm
+        onCancel={props.onCancel}
+        onAddingNewDish={dishAdditionHandler}
+      />
     </Modal>
   );
 };
