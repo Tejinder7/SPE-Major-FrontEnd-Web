@@ -17,7 +17,7 @@ const GetUserLoginData = async (email, password, role) => {
   console.log("Is the response correct");
   console.log(response);
 
-  return response.data.token;
+  return response.data;
 };
 
 const LoginController = { GetUserLoginData };

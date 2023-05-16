@@ -7,41 +7,47 @@ const hitPostService = async (props) => {
 
   console.log(url);
 
-  const response = await axios.post(url, props.postData);
+  const header = props.header;
+
+  const response = await axios.post(url, props.postData, header);
   console.log(response);
 
   return response;
 };
 
 const hitGetService = async (props) => {
-  try {
-    const url = serverURL + props.childURL;
+  const url = serverURL + props.childURL;
 
-    console.log("URL Hitting in GlobalServiceHandler in Get Service Call");
-    console.log(url);
+  const header = props.header;
 
-    const response = await axios.get(url);
+  console.log("URL Hitting in GlobalServiceHandler in Get Service Call");
+  console.log(url);
 
-    console.log("Data recieved");
-    console.log(response);
+  const response = await axios.get(url, header);
 
-    if (response.status === 200) {
-      props.responseDataHandler({
-        responseData: response,
-        responseError: null,
-      });
-    } else {
-      props.responseDataHandler({
-        responseData: response,
-        responseError: null,
-      });
-    }
-  } catch (error) {
-    props.responseDataHandler({
-      responseData: null,
-      responseError: error,
-    });
-  }
+  console.log("Data recieved");
+  console.log(response);
+
+  return response;
+  // try {
+
+  //   if (response.status === 200) {
+  //     props.responseDataHandler({
+  //       responseData: response,
+  //       responseError: null,
+  //     });
+  //   } else {
+  //     props.responseDataHandler({
+  //       responseData: response,
+  //       responseError: null,
+  //     });
+  //   }
+  // } catch (error) {
+  //   props.responseDataHandler({
+  //     responseData: null,
+  //     responseError: error,
+  //   });
+  // }
 };
 
 const GlobalService = {

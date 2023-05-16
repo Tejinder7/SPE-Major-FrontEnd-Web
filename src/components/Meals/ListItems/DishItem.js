@@ -1,13 +1,13 @@
-import classes from "./MealItem.module.css";
+import classes from "./ListItem.module.css";
 
-const MealItem = (props) => {
+const DishItem = (props) => {
   const price = `₹${props.price.toFixed(2)}`;
 
   return (
     <li className={classes.meal}>
       <div>
         <h3>{props.name}</h3>
-        {/* <div className={classes.description}>{props.description}</div> */}
+        <div className={classes.description}>{props.category}</div>
         <div className={classes.price}>{price}</div>
       </div>
       <div></div>
@@ -15,4 +15,4 @@ const MealItem = (props) => {
   );
 };
 
-export default MealItem;
+export default DishItem;

@@ -1,7 +1,9 @@
 import React from "react";
 
 import backgroundImage from "../../assets/background.jpg";
+import FoodCourtHeaderButtons from "./FoodCourtHeaderButtons";
 import classes from "./Header.module.css";
+import RestaurantHeaderButtons from "./RestaurantHeaderButtons";
 import SuperAdminHeaderButtons from "./SuperAdminHeaderButtons";
 
 const Header = (props) => {
@@ -12,11 +14,11 @@ const Header = (props) => {
   }
 
   if (props.role === "ROLE_FOOD_COURT") {
-    headerContent = <SuperAdminHeaderButtons />;
+    headerContent = <FoodCourtHeaderButtons />;
   }
 
   if (props.role === "ROLE_RESTAURANT") {
-    headerContent = <SuperAdminHeaderButtons />;
+    headerContent = <RestaurantHeaderButtons />;
   }
 
   return (

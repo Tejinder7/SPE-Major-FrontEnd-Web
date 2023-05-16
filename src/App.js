@@ -4,6 +4,9 @@ import Header from "./components/Layout/Header";
 import Meals from "./components/Meals/Meals";
 import LoginScreen from "./screens/LoginScreen";
 import AuthContextProvider, { AuthContext } from "./store/auth-context";
+import SuperAdminScreen from "./screens/SuperAdminScreen";
+import FoodCourtScreen from "./screens/FoodCourtScreen";
+import RestaurantScreen from "./screens/RestaurantScreen";
 
 function AuthStack() {
   const authCtx = useContext(AuthContext);
@@ -19,11 +22,22 @@ function AuthStack() {
 function AuthenticatedStack() {
   const authCtx = useContext(AuthContext);
 
+  let screen = <SuperAdminScreen />;
+
+  if (authCtx.role === "ROLE_FOOD_COURT") {
+    screen = <FoodCourtScreen />;
+  }
+
+  if (authCtx.role === "ROLE_RESTAURANT") {
+    screen = <RestaurantScreen />;
+  }
+
   return (
     <Fragment>
       <Header role={authCtx.role} />
       {/* <AddDishOverlay /> */}
-      <Meals />
+      {/* <Meals /> */}
+      {screen}
     </Fragment>
   );
 }
@@ -48,9 +62,9 @@ function Root() {
       const storedToken = await localStorage.getItem("token");
 
       if (storedToken) {
-        const storedUserEmail = localStorage.getItem("email");
+        const storedUserId = localStorage.getItem("userId");
         const storedUserRole = localStorage.getItem("role");
-        authCtx.authenticate(storedToken, storedUserEmail, storedUserRole);
+        authCtx.authenticate(storedToken, storedUserId, storedUserRole);
       }
 
       setIsTryingLogin(false);

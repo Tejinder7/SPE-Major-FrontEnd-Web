@@ -14,13 +14,13 @@ const LoginScreen = () => {
   async function loginHandler({ email, password, role }) {
     setIsAuthenticating(true);
     try {
-      const token = await LoginController.GetUserLoginData(
+      const response = await LoginController.GetUserLoginData(
         email,
         password,
         role
       );
-      authCtx.authenticate(token, email, role);
-      console.log(token);
+      authCtx.authenticate(response.token, response.authId, role);
+      console.log(response.token);
     } catch (error) {
       console.log(error);
       alert(error.response.data.message);
