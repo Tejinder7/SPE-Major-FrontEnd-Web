@@ -18,7 +18,6 @@ const Dropdown = (props) => {
         <option value="ROLE_FOOD_COURT">FoodCourt</option>
         <option value="ROLE_RESTAURANT">Restaurant</option>
       </select>
-      {/* <input type={props.type} id={props.id} /> */}
     </div>
   );
 };

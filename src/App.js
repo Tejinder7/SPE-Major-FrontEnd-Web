@@ -46,7 +46,9 @@ function Root() {
       const storedToken = await localStorage.getItem("token");
 
       if (storedToken) {
-        authCtx.authenticate(storedToken);
+        const storedUserEmail = localStorage.getItem("email");
+        const storedUserRole = localStorage.getItem("role");
+        authCtx.authenticate(storedToken, storedUserEmail, storedUserRole);
       }
 
       setIsTryingLogin(false);

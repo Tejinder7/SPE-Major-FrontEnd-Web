@@ -3,20 +3,24 @@ import { createContext, useEffect, useState } from "react";
 export const AuthContext = createContext({
   token: "",
   isAuthenticated: false,
-  userId: "",
-  userType: "",
+  email: "",
+  role: "",
   authenticate: () => {},
   logout: () => {},
 });
 
 function AuthContextProvider({ children }) {
   const [authToken, setAuthToken] = useState();
+  const [loggedEmail, setLoggedEmail] = useState();
+  const [loggedRole, setLoggedRole] = useState();
 
-  function authenticate(token, userId, userType) {
-    setAuthToken(token, userType, userId);
+  function authenticate(token, email, role) {
+    setAuthToken(token);
+    setLoggedEmail(email);
+    setLoggedRole(role);
     localStorage.setItem("token", token);
-    localStorage.setItem("userId", userId);
-    localStorage.setItem("userType", userType);
+    localStorage.setItem("email", email);
+    localStorage.setItem("role", role);
   }
 
   function logout() {
@@ -29,6 +33,8 @@ function AuthContextProvider({ children }) {
   const value = {
     token: authToken,
     isAuthenticated: !!authToken,
+    email: loggedEmail,
+    role: loggedRole,
     authenticate: authenticate,
     logout: logout,
   };

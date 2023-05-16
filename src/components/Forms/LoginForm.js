@@ -1,17 +1,38 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import Button from "../UI/Button";
 import Dropdown from "../UI/Dropdown";
 import FormInput from "../UI/FormInput";
 import classes from "./LoginForm.module.css";
 
 const LoginForm = (props) => {
-  const updateChangeHandler = (enteredText) => {
-    console.log(enteredText);
+  const [enteredUserType, setUserType] = useState("");
+  const [enteredEmail, setEmail] = useState("");
+  const [enteredPassword, setPassword] = useState("");
+
+  const emailChangeHandler = (enteredText) => {
+    setEmail(enteredText);
+  };
+
+  const passwordChangeHandler = (enteredText) => {
+    setPassword(enteredText);
+  };
+
+  const userTypeChangeHandler = (enteredText) => {
+    setUserType(enteredText);
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    props.onAuthenticate({
+      email: enteredEmail,
+      password: enteredPassword,
+      role: enteredUserType,
+    });
   };
 
   return (
     <Fragment>
-      <form>
+      <form onSubmit={submitHandler}>
         <section className={classes.title}>
           <h2>Login</h2>
         </section>
@@ -20,23 +41,23 @@ const LoginForm = (props) => {
           label="Email"
           type="text"
           id="email"
-          onUpdate={updateChangeHandler}
+          onUpdate={emailChangeHandler}
         />
         <FormInput
           field="password"
           label="Password"
           type="password"
           id="password"
-          onUpdate={updateChangeHandler}
+          onUpdate={passwordChangeHandler}
         />
         <Dropdown
           field="userType"
           label="User Type"
           id="userType"
-          onUpdate={updateChangeHandler}
+          onUpdate={userTypeChangeHandler}
         />
         <div className={classes.actions}>
-          <Button message="Login" />
+          <Button message="Login" buttonType="submit" />
         </div>
       </form>
     </Fragment>

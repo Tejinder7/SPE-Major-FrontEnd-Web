@@ -1,19 +1,4 @@
-.title {
-  text-align: center;
-  position: relative;
-  color: black;
-}
 
-.title h2 {
-  font-size: 2rem;
-  margin-top: 0;
-}
-
-.form {
-  margin: 1rem 0;
-  height: 19rem;
-  overflow: auto;
-}
 /* 
 .control {
   margin-bottom: 0.5rem;
@@ -45,9 +30,4 @@
   margin: 2rem auto;
   margin-top: -6rem;
   animation: meals-appear 1s ease-out forwards;
-}
-
-.actions {
-    margin-top: 2rem;
-  text-align: center;
 }
