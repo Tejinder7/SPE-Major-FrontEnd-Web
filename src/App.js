@@ -22,7 +22,7 @@ function AuthenticatedStack() {
   return (
     <Fragment>
       <Header role={authCtx.role} />
-      <AddDishOverlay />
+      {/* <AddDishOverlay /> */}
       <Meals />
     </Fragment>
   );

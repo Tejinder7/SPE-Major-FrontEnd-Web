@@ -26,8 +26,8 @@ function AuthContextProvider({ children }) {
   function logout() {
     setAuthToken(null);
     localStorage.removeItem("token");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("userType");
+    localStorage.removeItem("email");
+    localStorage.removeItem("role");
   }
 
   const value = {

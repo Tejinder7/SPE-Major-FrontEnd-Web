@@ -3,10 +3,9 @@ import React from "react";
 import backgroundImage from "../../assets/background.jpg";
 import classes from "./Header.module.css";
 import SuperAdminHeaderButtons from "./SuperAdminHeaderButtons";
-import LoginHeaderButtons from "./LoginHeaderButtons";
 
 const Header = (props) => {
-  let headerContent = <LoginHeaderButtons />;
+  let headerContent = <></>;
 
   if (props.role === "ROLE_SUPER_ADMIN") {
     headerContent = <SuperAdminHeaderButtons />;

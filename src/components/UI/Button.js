@@ -5,6 +5,7 @@ const Button = (props) => {
     <button
       className={props.alt ? classes["button--alt"] : classes.button}
       type={props.buttonType}
+      onClick={props.onPress}
     >
       {props.message}
     </button>

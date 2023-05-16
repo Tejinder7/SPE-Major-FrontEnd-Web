@@ -1,11 +1,10 @@
 import Card from "../components/UI/Card";
 import classes from "./Login.module.css";
 
-import Button from "../components/UI/Button";
 import LoginForm from "../components/Forms/LoginForm";
 import { useContext, useState } from "react";
 import { AuthContext } from "../store/auth-context";
-import { login } from "../util/auth";
+import LoginController from "../controllers/LoginController";
 
 const LoginScreen = () => {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
@@ -15,14 +14,18 @@ const LoginScreen = () => {
   async function loginHandler({ email, password, role }) {
     setIsAuthenticating(true);
     try {
-      const token = await login(email, password, role);
+      const token = await LoginController.GetUserLoginData(
+        email,
+        password,
+        role
+      );
       authCtx.authenticate(token, email, role);
       console.log(token);
     } catch (error) {
-      <h2>An error occured</h2>;
+      alert("Login failed. Please check your credentials.");
       setIsAuthenticating(false);
     }
-    console.log("Ho  gaya login bhenchod");
+    setIsAuthenticating(false);
   }
 
   if (isAuthenticating) {
