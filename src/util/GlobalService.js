@@ -8,43 +8,9 @@ const hitPostService = async (props) => {
   console.log(url);
 
   const response = await axios.post(url, props.postData);
-
   console.log(response);
 
   return response;
-  // try {
-
-  // console.log("Data recieved");
-  // console.log(response);
-
-  // console.log("Check the token");
-  // console.log(response.data.token);
-
-  // if (response.status === 200) {
-  //   props.responseDataHandler({
-  //     responseData: response,
-  //     responseError: null,
-  //   });
-  // } else {
-  //   props.responseDataHandler({
-  //     responseData: response,
-  //     responseError: null,
-  //   });
-  // }
-
-  //   if(response.status=== 200){
-  //     return {
-  //       reponseData: response,
-  //       responseError: null
-  //     }
-  //   }
-  // } catch (error) {
-
-  //   props.responseDataHandler({
-  //     responseData: null,
-  //     responseError: error,
-  //   });
-  // }
 };
 
 const hitGetService = async (props) => {

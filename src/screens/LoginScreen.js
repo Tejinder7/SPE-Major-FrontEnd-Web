@@ -22,7 +22,8 @@ const LoginScreen = () => {
       authCtx.authenticate(token, email, role);
       console.log(token);
     } catch (error) {
-      alert("Login failed. Please check your credentials.");
+      console.log(error);
+      alert(error.response.data.message);
       setIsAuthenticating(false);
     }
     setIsAuthenticating(false);
