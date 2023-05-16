@@ -58,11 +58,21 @@ const FoodCourtScreen = () => {
     // console.log(category);
   };
 
+  const deleteRestaurantHandler = async (restaurantId) => {
+    try {
+      const response = await FoodCourtController.deleteRestaurant(restaurantId);
+      console.log(response);
+    } catch (error) {
+      alert(error.response.message);
+    }
+  };
+
   const restaurantList = restaurants.map((restaurant) => (
     <RestaurantItem
-      key={restaurant.authId}
+      id={restaurant.authId}
       name={restaurant.name}
       contact={restaurant.contact}
+      onDelete={deleteRestaurantHandler}
     />
   ));
 

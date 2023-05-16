@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import Header from "../components/Layout/Header";
 import AppSummary from "../components/Meals/AppSummary";
 import DishItem from "../components/Meals/ListItems/DishItem";
+import OrderItem from "../components/Meals/ListItems/OrderItem";
 import AddDishOverlay from "../components/Overlay/AddDishOverlay";
 import Card from "../components/UI/Card";
 import RestaurantController from "../controllers/RestaurantController";
@@ -10,7 +11,11 @@ import classes from "./SuperAdminScreen.module.css";
 
 const RestaurantScreen = (props) => {
   const [dishes, setDishes] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [showDishOverlay, setDishOverlay] = useState(false);
+  const [showOrders, setShowOrders] = useState(false);
+
+  let displayList = "";
 
   useEffect(() => {
     async function getDishes() {
@@ -22,18 +27,52 @@ const RestaurantScreen = (props) => {
         alert(error.response.message);
       }
     }
+    async function getPendingOrders() {
+      try {
+        const response = await RestaurantController.fetchOrders();
+        console.log(response);
+        setOrders(response);
+      } catch (error) {
+        alert(error.response.message);
+      }
+    }
     getDishes();
+    getPendingOrders();
   }, [showDishOverlay]);
+
+  const deleteDishHandler = async (dishId) => {
+    try {
+        const response = await RestaurantController.deleteDish(dishId);
+        console.log(response);
+      } catch (error) {
+        alert(error.response.message);
+      }
+  }
 
   const dishList = dishes.map((dish) => (
     <DishItem
-      key={dish.dishId}
+      id={dish.dishId}
       name={dish.name}
       price={dish.price}
       category={dish.category}
+      onDelete={deleteDishHandler}
     />
   ));
 
+  const orderList = orders.map((order) => (
+    <OrderItem
+      id={order.orderId}
+      dishes={order.dishList}
+      price={order.totalPrice}
+      tableNumber={order.tableNumber}
+    />
+  ));
+
+  const switchScreenHandler = () => {
+    setShowOrders(!showOrders);
+  };
+
+  //   displayList = dishList;
   const showDishOverlayHandler = () => {
     setDishOverlay(true);
   };
@@ -61,12 +100,20 @@ const RestaurantScreen = (props) => {
     // console.log(category);
   };
 
+  if (!showOrders) {
+    displayList = dishList;
+  }
+  if (showOrders) {
+    displayList = orderList;
+  }
+
   return (
     <Fragment>
       <Header
         role="ROLE_RESTAURANT"
         onActivate={showDishOverlayHandler}
-        onSwitch={props.onSwitch}
+        onSwitch={switchScreenHandler}
+        switchHeaderButtons={!showOrders}
       />
       {showDishOverlay && (
         <AddDishOverlay
@@ -77,7 +124,7 @@ const RestaurantScreen = (props) => {
       <AppSummary />
       <section className={classes.meals}>
         <Card>
-          <ul>{dishList}</ul>
+          <ul>{displayList}</ul>
         </Card>
       </section>
     </Fragment>

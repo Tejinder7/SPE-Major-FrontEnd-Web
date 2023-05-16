@@ -23,6 +23,29 @@ const fetchDishes = async (props) => {
   return response.data;
 };
 
+const fetchOrders = async (props) => {
+    const restaurantId = localStorage.getItem("userId");
+    const childURL = `restaurant/${restaurantId}/fetchPendingOrders`;
+    const token = localStorage.getItem("token");
+  
+    console.log("Sending token");
+    console.log(token);
+  
+    const header = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+  
+    const response = await GlobalService.hitGetService({
+      childURL: childURL,
+      header: header,
+    });
+  
+    console.log("Is the response correct");
+    console.log(response);
+  
+    return response.data;
+  };
+
 const addNewDish = async (name, price, category) => {
   const restaurantId = localStorage.getItem("userId");
   const childURL = `restaurant/${restaurantId}/addDish`;
@@ -50,5 +73,27 @@ const addNewDish = async (name, price, category) => {
   return response.data;
 };
 
-const RestaurantController = { fetchDishes, addNewDish };
+const deleteDish = async (dishId) => {
+    const childURL = `restaurant/deleteDish/${dishId}`;
+    const token = localStorage.getItem("token");
+  
+    console.log("Sending token");
+    console.log(token);
+  
+    const header = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+  
+    const response = await GlobalService.hitDeleteService({
+      childURL: childURL,
+      header: header,
+    });
+  
+    console.log("Is the response correct");
+    console.log(response);
+  
+    return response.data;
+  };
+
+const RestaurantController = { fetchDishes, addNewDish, fetchOrders, deleteDish };
 export default RestaurantController;

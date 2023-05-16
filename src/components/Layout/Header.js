@@ -21,6 +21,8 @@ const Header = (props) => {
     headerContent = (
       <RestaurantHeaderButtons
         onActivate={props.onActivate}
+        switchHeaderButtons={props.switchHeaderButtons}
+        onSwitch={props.onSwitch}
       />
     );
   }
