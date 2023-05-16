@@ -2,7 +2,6 @@ import React from "react";
 
 import backgroundImage from "../../assets/background.jpg";
 import classes from "./Header.module.css";
-import Button from "../UI/Button";
 import SuperAdminHeaderButtons from "./SuperAdminHeaderButtons";
 import LoginHeaderButtons from "./LoginHeaderButtons";
 
