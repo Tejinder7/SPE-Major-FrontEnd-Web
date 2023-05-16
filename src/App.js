@@ -6,9 +6,11 @@ import LoginScreen from "./screens/LoginScreen";
 import AuthContextProvider, { AuthContext } from "./store/auth-context";
 
 function AuthStack() {
+  const authCtx = useContext(AuthContext);
+
   return (
     <Fragment>
-      <Header />
+      <Header role={authCtx.role} />
       <LoginScreen />
     </Fragment>
   );
@@ -19,7 +21,7 @@ function AuthenticatedStack() {
 
   return (
     <Fragment>
-      <Header />
+      <Header role={authCtx.role} />
       <AddDishOverlay />
       <Meals />
     </Fragment>

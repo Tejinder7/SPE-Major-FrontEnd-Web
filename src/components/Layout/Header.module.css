@@ -30,39 +30,3 @@
   object-fit: cover;
   transform: rotateZ(-5deg) translateY(-4rem) translateX(-1rem);
 }
-
-.actions {
-  text-align: right;
-}
-
-/* .actions button {
-  font: inherit;
-  cursor: pointer;
-  background-color: transparent;
-  border: 1px solid #0a4536;
-  padding: 0.5rem 2rem;
-  border-radius: 25px;
-  margin-left: 1rem;
-}
-
-.actions button:hover,
-.actions button:active {
-  background-color: #05231b;
-  border-color: #05231b;
-  color: white;
-}
-
-.actions .button--alt {
-  color: white;
-  background-color: #ac1940;
-  border: 1px solid #ac1940;
-}
-
-.actions .button--alt:hover {
-  background-color: #8a1433;
-}
-
-.actions .button {
-  background-color: #0a4536;
-  color: white;
-} */

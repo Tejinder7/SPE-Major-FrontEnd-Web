@@ -3,20 +3,29 @@ import React from "react";
 import backgroundImage from "../../assets/background.jpg";
 import classes from "./Header.module.css";
 import Button from "../UI/Button";
+import SuperAdminHeaderButtons from "./SuperAdminHeaderButtons";
+import LoginHeaderButtons from "./LoginHeaderButtons";
 
 const Header = (props) => {
+  let headerContent = <LoginHeaderButtons />;
+
+  if (props.role === "ROLE_SUPER_ADMIN") {
+    headerContent = <SuperAdminHeaderButtons />;
+  }
+
+  if (props.role === "ROLE_FOOD_COURT") {
+    headerContent = <SuperAdminHeaderButtons />;
+  }
+
+  if (props.role === "ROLE_RESTAURANT") {
+    headerContent = <SuperAdminHeaderButtons />;
+  }
+
   return (
     <React.Fragment>
       <header className={classes.header}>
         <h1>Bawarchi</h1>
-        <div className={classes.actions}>
-          {/* <button className={classes.button}>View Orders</button> */}
-          <Button message="Add Dish" />
-          <Button message="View Orders" />
-          <Button message="Logout" />
-          {/* <button className={classes.button}>Add Dishes</button> */}
-          {/* <button className={classes["button--alt"]}>Logout</button> */}
-        </div>
+        {headerContent}
       </header>
       <div className={classes["main-image"]}>
         <img src={backgroundImage} alt="Delicious food" />
